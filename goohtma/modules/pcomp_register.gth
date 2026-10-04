@@ -1,0 +1,59 @@
+gl table GO = GO || []
+
+file.Append("%self","<GTH_COMPONENT>")
+
+include <gth>
+include <gth.modules>
+
+include <br>
+
+include <br.MEM_ALLOCATION>
+include <br.MEM_CANCELLATION>
+include <br.MEM_COMPILER>
+include <br.MEM_MANAGER>
+
+include <br.ALLOCATE_RESOURCE>
+include <br.ALLOCATE_TOKEN>
+include <br.ALLOCATE_PERMISSION>
+include <br.ALLOCATE_RUNNER>
+
+
+var gl table GO.PeopleCompiler = []
+object static link 'pcomp' -> GO.PeopleCompiler
+object static link 'gth' -> GO.gth 
+object redo move 'br' -> GO.gth 
+
+br.ReRun("2045862002007199","%self")
+
+function pcomp:Register( name ){
+    
+    if ((getstatictype(name)) ~= TYPE_STRING & (getstatictype(name)) ~= TYPE_ENTITY) { gth.skipRegister() return }
+    if (getstatictype(name)) == TYPE_ENTITY { gth.allocation_canceled() return }
+
+    do {
+
+        gth.allocationBegin( function(allocationdata) {
+
+            object static link ald -> allocationdata
+
+            ald.objectMeta = {IsValid = function() { return false } }
+            ald.objectVisual = gth.UnnamedObjectClass:getName()
+
+            ald.mempound = function() {}
+                
+            br.MethodStayOnce()            
+            br.sentencer:RecomputeLinkedTo( gth )
+
+            br.sentencer:RecomputeLinkedTo( ald )
+            br.sentencer:Mark( ald, "<GTH_COMPONENT_PERSON_BR-GO>" ) 
+
+            return 1, ald 
+
+        })
+
+    }
+
+    gth.allocation_canceled()
+    return 0
+    
+}

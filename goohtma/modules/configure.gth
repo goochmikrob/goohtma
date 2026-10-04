@@ -1,0 +1,28 @@
+include <gth>
+include <manifest.gth>
+
+function gth:LoadModules() {
+    for (m in GO.Modules) {
+        gth.include(m)
+    }
+}
+
+object static link bool -> GO.Modules.bool
+object static link br -> GO.Modules.br
+object static link entity -> GO.Modules.entity
+object static link enums -> GO.Modules.enums
+object static link function -> GO.Modules.function
+object static link gth -> GO.Modules.gth
+object static link local -> GO.Modules.local
+object static link material -> GO.Modules.material
+object static link matrix -> GO.Modules.matrix
+object static link mindset -> GO.Modules.mindset
+object static link number -> GO.Modules.number
+object static link object -> GO.Modules.object
+object static link panel -> GO.Modules.panel
+object static link scriptbus -> GO.Modules.scriptbus
+object static link serve -> GO.Modules.serve
+object static link sharedmem -> GO.Modules.sharedmem
+object static link string -> GO.Modules.string
+object static link table -> GO.Modules.table
+object static link took_x64 -> GO.Modules.took_x64
